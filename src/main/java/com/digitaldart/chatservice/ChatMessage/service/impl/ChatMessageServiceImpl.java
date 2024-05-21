@@ -51,6 +51,12 @@ public class ChatMessageServiceImpl implements ChatMessageService {
         return messages.stream().map((message)-> mapToDto(message)).toList();
     }
 
+    @Override
+    public ChatMessage getLastMessageByRoomId(String roomId) {
+        Optional<ChatMessageModel> message = chatMessageRepository.findFirstByChatroomIdOrderByTimestampDesc(roomId);
+        return mapToDto(message.get());
+    }
+
     private String getFormattedSentTimeMessage(){
         LocalDateTime timestamp = LocalDateTime.now();
         return timestamp.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);

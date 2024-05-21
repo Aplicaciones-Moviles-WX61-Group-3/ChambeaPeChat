@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -28,8 +30,13 @@ public class ChatMessageController {
 
     //HTTP
     @GetMapping("/messages")
-    public List<ChatMessage> getMessages(@RequestParam String roomId){
-        return chatMessageService.getAllMessagesByRoomId(roomId);
+    public List<ChatMessage> getMessages(@RequestParam String roomId, @RequestParam(required = false) boolean latest){
+        if(latest){
+            return Collections.singletonList(chatMessageService.getLastMessageByRoomId(roomId));
+        }
+        else{
+            return chatMessageService.getAllMessagesByRoomId(roomId);
+        }
     }
 
 }
