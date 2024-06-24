@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface ChatRoomRepository extends MongoRepository<ChatRoomModel, String> {
     Optional<ChatRoomModel> findByRoomId(String roomId);
+    boolean existsByRoomId(String roomId);
 }
