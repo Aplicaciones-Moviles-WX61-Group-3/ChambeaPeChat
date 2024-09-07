@@ -53,7 +53,7 @@ public class ChatRoomServiceImpl implements ChatRoomService {
 
     @Override
     public List<String> getAllUsersId() {
-        String url = "https://chambeape.azurewebsites.net/api/v1/users";
+        String url = "https://chambeapeapi-a4anbthqamgre7ce.eastus-01.azurewebsites.net/api/v1/users";
         List<Map<String, Object>> users = restTemplate.getForObject(url, List.class);
 
         List<String> userIds = new ArrayList<>();
